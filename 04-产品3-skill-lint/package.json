@@ -1,0 +1,33 @@
+{
+  "name": "skill-lint",
+  "version": "0.1.1",
+  "description": "体检你的 Claude Code 生态文件（SKILL.md / CLAUDE.md / agents / commands / rules）——可解释的规则打分 + 改进建议 + HTML 报告。",
+  "type": "module",
+  "bin": {
+    "skill-lint": "bin/skill-lint.js"
+  },
+  "scripts": {
+    "test": "node test/self-test.js",
+    "start": "node bin/skill-lint.js scan fixtures"
+  },
+  "keywords": [
+    "claude-code",
+    "skill",
+    "lint",
+    "linter",
+    "audit",
+    "CLAUDE.md",
+    "agents",
+    "cli"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "README.md",
+    "SPEC.md"
+  ],
+  "license": "MIT"
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CardStack · 一句话生成精美知识卡片</title>
+    <meta
+      name="description"
+      content="输入标题和要点，一键生成风格统一、精美的知识卡片 / 长图，导出高清 PNG。纯本地、不上传、隐私安全。"
+    />
+
+    <!-- 字体：本地同源 woff2（Inter + Noto Sans/Serif SC）。
+         不走 Google Fonts CDN —— 既绕开 html-to-image 导出时的跨域 cssRules
+         SecurityError，又保证墙内/离线也能渲染。详见 fonts/fonts.css。 -->
+    <link rel="stylesheet" href="fonts/fonts.css" />
+
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- 顶栏 -->
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand__logo">CardStack</span>
+        <span class="brand__tag">一句话，生成精美知识卡片</span>
+      </div>
+      <div class="topbar__hint">
+        <b>本地运行</b> · 不上传 · 隐私安全
+      </div>
+    </header>
+
+    <!-- 工作台 -->
+    <main class="workbench">
+      <!-- 左：编辑区 -->
+      <aside class="editor">
+        <!-- 内容 -->
+        <section class="section">
+          <h2 class="section__title">内容</h2>
+
+          <div class="field-group">
+            <label class="field-label" for="in-kicker">小标签 / Kicker（可留空）</label>
+            <input id="in-kicker" class="field" type="text" maxlength="40"
+              placeholder="如：PRODUCT THINKING" />
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="in-title">标题</label>
+            <textarea id="in-title" class="field" maxlength="80"
+              placeholder="写下你的核心观点…（支持换行）"></textarea>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label" for="in-subtitle">副标题（可留空）</label>
+            <textarea id="in-subtitle" class="field" maxlength="100"
+              placeholder="一句补充说明…"></textarea>
+          </div>
+        </section>
+
+        <!-- 要点 -->
+        <section class="section">
+          <h2 class="section__title">要点（最多 8 条）</h2>
+          <div id="bullet-list"></div>
+          <button id="add-bullet" class="btn-ghost" type="button">+ 添加要点</button>
+        </section>
+
+        <!-- 署名 -->
+        <section class="section">
+          <h2 class="section__title">署名 / 水印</h2>
+          <div class="field-group">
+            <input id="in-signature" class="field" type="text" maxlength="50"
+              placeholder="如：@你的昵称 · 公众号名" />
+          </div>
+        </section>
+
+        <!-- 模板 -->
+        <section class="section">
+          <h2 class="section__title">模板主题</h2>
+          <div id="template-grid" class="picker-grid"></div>
+        </section>
+
+        <!-- 尺寸 -->
+        <section class="section">
+          <h2 class="section__title">卡片尺寸</h2>
+          <div id="size-grid" class="picker-grid"></div>
+        </section>
+      </aside>
+
+      <!-- 右：预览 + 工具条 -->
+      <section class="stage">
+        <div id="preview" class="preview">
+          <div class="preview__frame">
+            <!-- 卡片本体，由 app.js 渲染内容；尺寸/样式由 JS 注入 -->
+            <article id="card" class="card" data-size="portrait"></article>
+          </div>
+        </div>
+        <div class="toolbar">
+          <button id="reset-btn" class="btn btn--secondary" type="button">重置示例</button>
+          <button id="export-btn" class="btn btn--primary" type="button">导出高清 PNG（2x）</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Toast -->
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <!-- 导出库：html-to-image（本地内置，纯前端，无后端、无 CDN 依赖） -->
+    <script src="vendor/html-to-image.js"></script>
+
+    <!-- 业务脚本：顺序加载（templates → export → app） -->
+    <script src="templates.js"></script>
+    <script src="export.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

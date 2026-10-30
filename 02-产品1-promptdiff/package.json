@@ -1,0 +1,34 @@
+{
+  "name": "promptdiff",
+  "version": "0.1.0",
+  "description": "Snapshot, diff and timeline your AI coding config (~/.claude, ~/.codex). Config as an asset: observable, reversible, comparable.",
+  "keywords": [
+    "claude-code",
+    "codex",
+    "config",
+    "diff",
+    "snapshot",
+    "dotfiles",
+    "prompt"
+  ],
+  "license": "MIT",
+  "bin": {
+    "promptdiff": "bin/promptdiff.js"
+  },
+  "main": "lib/cli.js",
+  "files": [
+    "bin/",
+    "lib/",
+    "test/",
+    "README.md",
+    "SPEC.md"
+  ],
+  "scripts": {
+    "start": "node bin/promptdiff.js",
+    "test": "node test/e2e.test.js"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "dependencies": {}
+}

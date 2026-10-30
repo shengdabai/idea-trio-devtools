@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# promptdiff runtime store (snapshots, reports) — never commit a user's config
+.promptdiff/
+*.promptdiff/
+
+# Logs / debug
+*.log
+npm-debug.log*
+
+# OS / editor cruft
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Secrets firewall — never let credentials into git
+.env
+.env.*
+*.pem
+*.key
+*.crt
+credentials.*
+secrets.*
+auth.json
+.npmrc
+
+# Internal pipeline / state artifacts (must not ship)
+.omc/
+opc-doc/
+*-todo.md
+.pipeline-state.json
+.state.json
